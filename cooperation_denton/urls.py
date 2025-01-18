@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from blog import views  # here
 from django.conf.urls.static import static
 from django.conf import settings
+from blog import views
+from .feeds import BlogFeeds
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,6 +11,7 @@ urlpatterns = [
     path('new_post/', views.new_post, name='new_post'),
     path('delete_blog_post/<slug:slug>/',
          views.delete_post, name='delete_blog_post'),
-    path('<slug:slug>', views.post_details, name='post_details'),
-    
+    path('blog/<slug:slug>', views.post_details, name='post_details'),
+    path('rss', BlogFeeds(), name="blog_feed"),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
