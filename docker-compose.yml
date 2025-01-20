@@ -1,6 +1,8 @@
 services:
-  web:
+  blog:
     build: .
+    container_name: blog
+    restart: unless-stopped
     restart: always
     volumes:
       - .:/code
@@ -10,11 +12,12 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: ${POSTGRES_HOST}
       SECRET_KEY: ${SECRET_KEY}
       DEBUG: ${DEBUG}
       ALLOWED_HOSTS: ${ALLOWED_HOSTS}
     depends_on:
-      db:
+      blog-db:
         condition: service_healthy
     command:
       - /bin/bash
@@ -23,9 +26,10 @@ services:
         python manage.py migrate
         python /code/manage.py runserver 0.0.0.0:8000
 
-  db:
+  blog-db:
     image: postgres:14
-    restart: always
+    container_name: blog-db
+    restart: unless-stopped
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:

@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ["DEBUG"])
+DEBUG = eval(os.environ["DEBUG"])
 
 SESSION_COOKIE_SECURE = True
 
@@ -87,7 +87,7 @@ DATABASES = {
         "NAME": os.environ["POSTGRES_DB"],
         "USER": os.environ["POSTGRES_USER"],
         "PASSWORD": os.environ["POSTGRES_PASSWORD"],
-        "HOST": "db",  # set in docker-compose.yml
+        "HOST": os.environ["POSTGRES_HOST"],  # set in docker-compose.yml
         "PORT": 5432,
     }
 }
