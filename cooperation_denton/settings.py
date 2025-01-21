@@ -25,13 +25,15 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = eval(os.environ["DEBUG"])
 
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = not DEBUG
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = not DEBUG
 
 SECURE_SSL_REDIRECT = not DEBUG
 
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(",")
+
+CSRF_TRUSTED_ORIGINS = os.environ["CSRF_TRUSTED_ORIGINS"].split(",")
 
 
 # Application definition
