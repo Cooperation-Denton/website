@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container mt-3">
-  <div class="row mt-2">
-    <div class="col-md-8 card mb-3 border mt-4 d-flex justify-content-center">
+<div class="container post-details">
+  <div class="row justify-content-center">
+    <div class="col-md-8 card mb-3 border mt-4">
       <div class="card-body">
         <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
         <img src="/media/{{post.image}}" class="card-img-top" alt="..." />
