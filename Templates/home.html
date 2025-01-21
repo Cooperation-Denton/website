@@ -1,14 +1,14 @@
 {% extends 'base.html'%} {% load static%} {% block content%}
 
-<div class="container mb-3 post-stream">
+<div class="container block-container gap-5">
   {% for post in posts %}
-  <div class="col-4">
-    <div class="card post-card">
+  <div class="col-sm-12 col-lg-4">
+    <div class="card">
       <div class="card-header text-center">by {{post.author}}</div>
       <div class="card text-center align-items-center">
         <img
           src="/media/{{post.image}}"
-          class="card-img-top hero-image"
+          class="card-img-top post-card-image"
           alt="..."
         />
         <div class="card-body">

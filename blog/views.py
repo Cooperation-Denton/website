@@ -36,7 +36,7 @@ def post_details(request, slug):
     post = Post.objects.get(slug=slug)
     md_parser = markdown.Markdown(extensions=["fenced_code"])
     post.body = md_parser.convert(post.body)
-    comments = Comment.objects.order_by("-created_on")
+    comments = Comment.objects.filter(post=post.id).order_by("-created_on")
     new_comment = None
     if request.method == "POST":
         form = CommentForm(request.POST or None)
@@ -48,3 +48,7 @@ def post_details(request, slug):
     else:
         form = CommentForm()
     return render(request, "add_comment.html", {'form': form, 'post': post, 'comments': comments, 'new_comment': new_comment})
+
+
+def contact(request):
+    return render(request, "contact.html", {})
