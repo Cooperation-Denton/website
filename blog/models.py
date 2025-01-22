@@ -43,3 +43,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ContactMethod(models.Model):
+    source = models.CharField(max_length=100)
+    identifier = models.CharField(max_length=100)
+    created_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_on']
+
+    def __str__(self):
+        return self.source

@@ -1,9 +1,10 @@
 {% extends 'base.html'%} {% load static%} {% block content%}
 
 <div class="container block-container">
-  <div class="row">
-    <div class="col-6">Instagram</div>
-    <div class="col-6">asdfasdf</div>
+  {% for contact_method in contact_methods %}
+  <div class="col-12 mb-3" style="text-align: center">
+    {{ contact_method.source }} - {{contact_method.identifier}}
   </div>
+  {% endfor %}
 </div>
 {% endblock %}

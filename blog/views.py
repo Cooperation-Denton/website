@@ -51,4 +51,5 @@ def post_details(request, slug):
 
 
 def contact(request):
-    return render(request, "contact.html", {})
+    contact_methods = ContactMethod.objects.order_by("-created_on")
+    return render(request, "contact.html", {'contact_methods': contact_methods})
