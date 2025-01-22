@@ -18,3 +18,4 @@ class CommentForm(forms.ModelForm):
 class ContactMethodForm(forms.ModelForm):
     class Meta:
         model = ContactMethod
+        exclude = []
