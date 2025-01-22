@@ -1,10 +1,20 @@
 {% extends 'base.html'%} {% load static%} {% block content%}
 
 <div class="container block-container">
-  {% for contact_method in contact_methods %}
-  <div class="col-12 mb-3" style="text-align: center">
-    {{ contact_method.source }} - {{contact_method.identifier}}
+  <div class="col-sm-12 col-lg-6 contacts">
+    <div class="card">
+      <div class="card-body">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            {% for contact_method in contact_methods %}
+            <div class="row justify-content-center mb-3">
+              {{ contact_method.source }} - {{contact_method.identifier}}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  {% endfor %}
+  {% endblock %}
 </div>
-{% endblock %}
