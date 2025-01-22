@@ -21,9 +21,12 @@ body {
     margin-top: 5rem;
 }
 
+.post-card {
+    height: 60vh;
+}
+
 .post-card-image {
-    height: 200px;
-    max-width: 90%;
+    height: 70%;
     object-fit: cover;
 }
 
