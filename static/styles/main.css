@@ -22,7 +22,7 @@ body {
 }
 
 .post-card-image {
-    height: 100px;
+    height: 200px;
     max-width: 90%;
     object-fit: cover;
 }
