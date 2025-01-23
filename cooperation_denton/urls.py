@@ -12,7 +12,7 @@ urlpatterns = [
     path('delete_blog_post/<slug:slug>/',
          views.delete_post, name='delete_blog_post'),
     path('blog/<slug:slug>', views.post_details, name='post_details'),
-    path('rss', BlogFeeds(), name="blog_feed"),
+    path('rss.xml', BlogFeeds(), name="blog_feed"),
     path('contact/', views.contact, name='contact'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
