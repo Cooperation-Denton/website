@@ -10,7 +10,7 @@ class BlogFeeds(Feed):
     description = "The blog of Cooperation Denton."
 
     def items(self):
-        return Post.objects.order_by("-updated_on")[:100]
+        return Post.objects.order_by("-created_on")[:10]
 
     def item_title(self, item):
         return item.title
@@ -18,5 +18,5 @@ class BlogFeeds(Feed):
     def item_description(self, item):
         return item.description
 
-    def item_lastupdated(self, item):
-        return item.updated_on
+    def item_pubdate(self, item):
+        return item.created_on
