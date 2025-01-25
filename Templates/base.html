@@ -6,15 +6,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% if post %}
-    <meta property="og:title" content="/media/{{post.title}}" />
+    <meta property="og:title" content="{{post.title}}" />
     <meta
       name="description"
       property="og:description"
       content="{{post.description}}"
     />
-    <meta property="og:image" content="/media/{{post.image}}" />
+    <meta property="og:image" content="{% url 'home' %}media/{{post.image}}" />
     <meta property="og:image:alt" content="{{post.image_alt}}" />
-    <meta property="og:url" content="{{request.path}}" />
+    <meta property="og:url" content="{{post.get_absolute_url}}" />
     <meta name="twitter:card" value="summary" />
     {% endif %}
     <!-- Bootstrap CSS -->
