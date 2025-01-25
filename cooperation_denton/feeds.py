@@ -19,4 +19,4 @@ class BlogFeeds(Feed):
         return item.description
 
     def item_pubdate(self, item):
-        return item.created_on
+        return item.published_on
