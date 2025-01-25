@@ -70,7 +70,8 @@ class ContactMethod(models.Model):
 @receiver(pre_save, sender=Post)
 def publish_post(sender, instance, ** kwargs):
     if instance.id is None:
-        pass
+        if instance.is_published == True:
+            instance.published_on = now()
     else:
         current = instance
         previous = Post.objects.get(id=instance.id)
