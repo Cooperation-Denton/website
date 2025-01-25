@@ -25,6 +25,9 @@ services:
       - |
         python manage.py migrate
         gunicorn --bind :8000 --workers 3 cooperation_denton.wsgi
+    networks:
+      - internal
+      - nginx-proxy
 
   blog-db:
     image: postgres:14
@@ -41,6 +44,13 @@ services:
       interval: 1s
       timeout: 5s
       retries: 10
+    networks:
+      - internal
 
 volumes:
   postgres_data:
+
+networks:
+  internal:
+  nginx-proxy:
+    external: true
