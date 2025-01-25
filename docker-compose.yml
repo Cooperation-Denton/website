@@ -24,7 +24,7 @@ services:
       - -c
       - |
         python manage.py migrate
-        gunicorn cooperation_denton.wsgi
+        gunicorn --bind :8000 --workers 3 cooperation_denton.wsgi
 
   blog-db:
     image: postgres:14
