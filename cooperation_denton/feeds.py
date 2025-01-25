@@ -10,7 +10,7 @@ class BlogFeeds(Feed):
     description = "The blog of Cooperation Denton."
 
     def items(self):
-        return Post.objects.filter(is_published=False).order_by("-published_on")[:10]
+        return Post.objects.filter(is_published=True).order_by("-published_on")[:10]
 
     def item_title(self, item):
         return item.title
