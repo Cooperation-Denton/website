@@ -7,7 +7,7 @@ from .forms import *
 
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(is_published=True).order_by('-published_on')
     return render(request, 'home.html', {'posts': posts})
 
 

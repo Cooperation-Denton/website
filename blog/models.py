@@ -1,8 +1,12 @@
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.utils.timezone import now
 from django.urls import reverse
-# Create your models here.
+
+# Models
 
 
 class Post(models.Model):
@@ -12,9 +16,10 @@ class Post(models.Model):
     description = models.CharField(max_length=210)
     body = models.TextField()
     image = models.ImageField(upload_to="images", blank=True, null=True)
-
+    is_published = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    published_on = models.DateTimeField(blank=True, null=True, default=None)
 
     class Meta:
         ordering = ['-created_on']
@@ -55,3 +60,17 @@ class ContactMethod(models.Model):
 
     def __str__(self):
         return self.source
+
+
+# Signals
+
+
+@receiver(pre_save, sender=Post)
+def publish_post(sender, instance, ** kwargs):
+    if instance.id is None:
+        pass
+    else:
+        current = instance
+        previous = Post.objects.get(id=instance.id)
+        if previous.is_published == False and current.is_published == True:
+            instance.published_on = now()
