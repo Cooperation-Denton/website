@@ -16,6 +16,8 @@ class Post(models.Model):
     description = models.CharField(max_length=210)
     body = models.TextField()
     image = models.ImageField(upload_to="images", blank=True, null=True)
+    image_alt = models.CharField(max_length=500,
+                                 default="No alt text given because I only think about myself.")
     is_published = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

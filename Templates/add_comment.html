@@ -5,7 +5,11 @@
     <div class="col-md-8 card mb-3 mt-4">
       <div class="card-body">
         <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
-        <img src="/media/{{post.image}}" class="card-img-top" alt="..." />
+        <img
+          src="/media/{{post.image}}"
+          class="card-img-top"
+          alt="{{post.image_alt}}"
+        />
         <p class="text-muted">{{ post.author }} | {{ post.created_on }}</p>
         <p class="card-text">{{ post.body | safe }}</p>
       </div>
